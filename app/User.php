@@ -1,6 +1,6 @@
 <?php
 
-namespace TesBilling\Models;
+namespace TesBilling;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;

@@ -68,7 +68,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => TesBilling\Models\User::class,
+            'model' => TesBilling\User::class,
         ],
 
         // 'users' => [
