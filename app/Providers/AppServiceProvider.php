@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace TesBilling\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
