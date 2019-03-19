@@ -16,10 +16,12 @@ class TarifController extends Controller
     public function index()
     {
         $t = new Tarif;
+        $a = $t->find(1);
+        $l = $t->find(2);
         $ta = $t->where('layanan_id', 1)->get();
         $tl = $t->where('layanan_id', 2)->get();
         $count = 3;
-        return view('tarif.index', compact('t', 'ta', 'tl', 'count'));
+        return view('tarif.index', compact('t', 'ta', 'tl', 'count','l','a'));
     }
 
     /**
@@ -62,7 +64,10 @@ class TarifController extends Controller
      */
     public function edit($id)
     {
-        //
+        $t = new Tarif;
+        $t = $t->find($id);
+        $tar = $t->where('layanan_id', $id)->get();
+        return view('tarif.edit', compact('t', 'tar'));
     }
 
     /**
@@ -74,7 +79,9 @@ class TarifController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $t = Tarif::find($id);
+        $t->update($request->all());
+        return redirect()->route('rare.index')->with('success', 'Tarif berhasil diupdate');
     }
 
     /**

@@ -9,6 +9,7 @@ class Tarif extends Model
 {
     use SoftDeletes;
     protected $table = 'tarifs';
+    protected $guarded = array();
     protected $casts = [
         'tarif' => 'array'
     ];

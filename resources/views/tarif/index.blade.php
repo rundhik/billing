@@ -30,9 +30,9 @@
                         <tr>
                             <td>{{ $t->find($air->id)->layanan->nm_layanan }}</td>
                             @for ($i = 0; $i <= $count; $i++)
-                            <td>{{ $t->where('layanan_id', $air->layanan_id)->pluck('tarif')->first()[$i] }}</td>
+                            <td>{{ $a->tarif[$i] }}</td>
                             @endfor
-                            <td>Edit</td>
+                            <td><a href="{{ route('rare.edit', $air->id)}}"><i class="fa fa-pencil"></i></a></td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -66,9 +66,9 @@
                         <tr>
                             <td>{{ $t->find($listrik->id)->layanan->nm_layanan }}</td>
                             @for ($k = 0; $k <= $count; $k++)
-                            <td>{{ $t->where('layanan_id', $listrik->layanan_id)->pluck('tarif')->first()[$k] }}</td>
+                            <td>{{ $l->tarif[$k] }}</td>
                             @endfor
-                            <td>Edit</td>
+                            <td><a href="{{ route('rare.edit', $listrik->id)}}"><i class="fa fa-pencil"></i></a></td>
                         </tr>
                         @endforeach
                     </tbody>

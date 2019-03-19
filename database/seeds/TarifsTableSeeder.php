@@ -16,12 +16,12 @@ class TarifsTableSeeder extends Seeder
             [
                 'id' => 1,
                 'layanan_id' => 1,
-                'tarif' => [1000,1200,1500,2000]
+                'tarif' => ["1000","1200","1500","2000"]
             ],
             [
                 'id' => 2,
                 'layanan_id' => 2,
-                'tarif' => [2000,3000,4500,7500]
+                'tarif' => ["2000","3000","4500","8000"]
             ],
         ];
         foreach ($val as $key => $value) {
