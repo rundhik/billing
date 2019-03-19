@@ -77,6 +77,6 @@ class HomeController extends Controller
         echo $tar[3], " ";
         echo $tag, " ";
         
-        return view('home');
+        return view('penggunaan.index');
     }
 }
