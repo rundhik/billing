@@ -17,23 +17,23 @@
                 <table class="table table-bordered table-striped mb-none" id="datatable-tabletools" data-swf-path="{{ asset('css/copy_csv_xls_pdf.swf') }}">
                     <thead>
                         <tr>
-                            <th>Rendering engine</th>
-                            <th>Browser</th>
-                            <th>Platform(s)</th>
-                            <th class="hidden-phone">Engine version</th>
-                            <th class="hidden-phone">CSS grade</th>
+                            <th>id</th>
+                            <th>Pelanggan</th>
+                            <th>Bulan</th>
+                            <th>Type</th>
+                            <th>Meter</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($p as $usage)
                         <tr>
-                            <td>Trident</td>
-                            <td>Internet
-                            Explorer 4.0
-                            </td>
-                            <td>Win 95+</td>
-                            <td class="center hidden-phone">4</td>
-                            <td class="center hidden-phone">X</td>
+                            <td>{{$usage->id}}</td>
+                            <td>{{$pe->find($usage->id)->customer->nm_customer}}</td>
+                            <td>{{$pe->find($usage->id)->periode->kode}}</td>
+                            <td>{{$pe->find($usage->id)->layanan->nm_layanan}}</td>
+                            <td>{{$usage->meter}}</td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
