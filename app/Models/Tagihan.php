@@ -17,4 +17,12 @@ class Tagihan extends Model
     {
         return $this->belongsTo('TesBilling\Models\Penggunaan', 'penggunaan_id');
     }
+    public function meterawal()
+    {
+        return $this->belongsTo('TesBilling\Models\Penggunaan', 'meter');
+    }
+    public function meterakhir()
+    {
+        return $this->belongsTo('TesBilling\Models\Penggunaan', 'meter');
+    }
 }

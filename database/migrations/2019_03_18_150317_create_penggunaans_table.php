@@ -18,7 +18,7 @@ class CreatePenggunaansTable extends Migration
             $table->bigInteger('customer_id')->unsigned()->nullable();
             $table->bigInteger('layanan_id')->unsigned()->nullable();
             $table->bigInteger('periode_id')->unsigned()->nullable();
-            $table->bigInteger('meter')->nullable();
+            $table->bigInteger('meter')->index();
             $table->timestamps();
             $table->softDeletes();
 

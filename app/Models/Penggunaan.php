@@ -32,4 +32,12 @@ class Penggunaan extends Model
     {
         return $this->hasOne('TesBilling\Models\Tagihan', 'tagihan_id', 'id');
     }
+    public function meterawal()
+    {
+        return $this->hasMany('TesBilling\Models\Tagihan', 'meter_awal', 'meter');
+    }
+    public function meterakhir()
+    {
+        return $this->hasMany('TesBilling\Models\Tagihan', 'meter_akhir', 'meter');
+    }
 }

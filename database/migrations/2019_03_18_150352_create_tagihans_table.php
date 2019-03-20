@@ -16,12 +16,17 @@ class CreateTagihansTable extends Migration
         Schema::create('tagihans', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('penggunaan_id')->unsigned()->nullable();
+            $table->bigInteger('meter_awal')->nullable();
+            $table->bigInteger('meter_akhir')->nullable();
+            $table->bigInteger('meter_digunakan')->nullable();
             $table->string('tagihan_kode', 100)->nullable();
             $table->bigInteger('tagihan');
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign('penggunaan_id')->references('id')->on('penggunaans')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('meter_awal')->references('meter')->on('penggunaans')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('meter_akhir')->references('meter')->on('penggunaans')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
