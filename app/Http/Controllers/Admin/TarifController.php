@@ -81,7 +81,7 @@ class TarifController extends Controller
     {
         $t = Tarif::find($id);
         $t->update($request->all());
-        return redirect()->route('rare.index')->with('success', 'Tarif berhasil diupdate');
+        return redirect()->route('fare.index')->with('success', 'Tarif berhasil diupdate');
     }
 
     /**
