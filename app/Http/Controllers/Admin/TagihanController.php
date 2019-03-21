@@ -5,6 +5,8 @@ namespace TesBilling\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use TesBilling\Http\Controllers\Controller;
 use TesBilling\Models\Tagihan;
+use TesBilling\Models\Layanan;
+use TesBilling\Models\Penggunaan;
 
 class TagihanController extends Controller
 {
@@ -16,11 +18,15 @@ class TagihanController extends Controller
     public function index()
     {
         $t = new Tagihan;
-        $a = $t->find(1);
-        $l = $t->find(2);
-        $ta = $t->where('layanan_id', 1)->get();
-        $tl = $t->where('layanan_id', 2)->get();
-        return view('tagihan.index', compact('t'));
+        $lay = new Layanan;
+        $p = new Penggunaan;
+        $a = $lay->find(1)->tagihan->all();
+        $l = $lay->find(2)->tagihan->all();
+        // $a = $t->find(1);
+        // $l = $t->find(2);
+        // $ta = $t->where('layanan_id', 1)->get();
+        // $tl = $t->where('layanan_id', 2)->get();
+        return view('tagihan.index', compact('a','l','p','t'));
     }
 
     /**
@@ -28,13 +34,21 @@ class TagihanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function generate($id)
+    {
+        return ('Hello');
+    }
     public function create()
     {
         // $u = new Penggunaan;
         $cust = 1;
         $lay = 1;
         $per = 1;
-        $u->where([ ['customer_id', '=' , 1], ['layanan_id', '=', 1], ['periode_id', '=', 2]])->first()->layanan->nm_layanan;
+        $u->where([ 
+            ['customer_id', '=' , 1], 
+            ['layanan_id', '=', 1], 
+            ['periode_id', '=', 2]
+            ])->first()->layanan->nm_layanan;
         $t->find(1)->penggunaan->id;
         $t->find(1)->penggunaan->layanan->nm_layanan;
         $t->find(1)->penggunaan->customer->nm_customer;

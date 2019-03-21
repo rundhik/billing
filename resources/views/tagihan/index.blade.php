@@ -17,22 +17,35 @@
                 <table class="table table-bordered table-striped mb-none" data-swf-path="{{ asset('css/copy_csv_xls_pdf.swf') }}">
                     <thead>
                         <tr>
+                            <th>ID</th>
+                            <th>Kode</th>
+                            <th>Nama</th>
                             <th>Tipe</th>
-                            <th>Tarif 0 - 10 (m3)</th>
-                            <th>Tarif > 10 - 20 (m3)</th>
-                            <th>Tarif > 20 - 30 (m3)</th>
-                            <th>Tarif > 30 (m3)</th>
+                            <th>Periode</th>
+                            <th>Meter Awal (m3)</th>
+                            <th>Meter Akhir (m3)</th>
+                            <th>Penggunaan (m3)</th>
+                            <th>Tagihan (m3)</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($ta as $air)
+                        @foreach ($a as $air)
                         <tr>
-                            <td>{{ $t->find($air->id)->layanan->nm_layanan }}</td>
-                            @for ($i = 0; $i <= $count; $i++)
-                            <td>{{ $a->tarif[$i] }}</td>
-                            @endfor
-                            <td><a href="{{ route('bill.edit', $air->id)}}"><i class="fa fa-pencil"></i></a></td>
+                            <td>{{ $air->id }}</td>
+                            <td>{{ $air->tagihan_kode }}</td>
+                            <td>{{ $t->find($air->id)->penggunaan->customer->nm_customer }}</td>
+                            <td>{{ $t->find($air->id)->penggunaan->layanan->nm_layanan }}</td>
+                            <td>{{ $t->find($air->id)->penggunaan->periode->deskripsi }}</td>
+                            <td>{{ $air->meter_awal }}</td>
+                            <td>{{ $air->meter_akhir }}</td>
+                            <td>{{ $air->meter_digunakan }}</td>
+                            <td>{{ $air->tagihan }}</td>
+                            <td>
+                                <a href="{{ route('bill.edit', $air->id)}}"><i class="fa fa-pencil" alt='Generate Tagihan'></i></a>
+                                <span>&nbsp;</span>
+                                <a href="{{ route('bill.generate', $air->id)}}"><i class="fa fa-file-text" alt='Cetak'></i></a>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -54,24 +67,34 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Kode Tagihan</th>
-                            <th>Nama Pelanggan</th>
+                            <th>Kode</th>
+                            <th>Nama</th>
                             <th>Tipe</th>
-                            <th>Periode Tagihan</th>
-                            <th>Meter Awal</th>
-                            <th>Meter Akhir</th>
-                            <th>Meter Digunakan</th>
+                            <th>Periode</th>
+                            <th>Meter Awal (KWh)</th>
+                            <th>Meter Akhir (KWh)</th>
+                            <th>Penggunaan (KWh)</th>
+                            <th>Tagihan</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($tl as $listrik)
+                        @foreach ($l as $listrik)
                         <tr>
-                            <td>{{ $t->find($listrik->id)->layanan->nm_layanan }}</td>
-                            @for ($k = 0; $k <= $count; $k++)
-                            <td>{{ $l->tarif[$k] }}</td>
-                            @endfor
-                            <td><a href="{{ route('bill.edit', $listrik->id)}}"><i class="fa fa-pencil"></i></a></td>
+                            <td>{{ $listrik->id }}</td>
+                            <td>{{ $listrik->tagihan_kode }}</td>
+                            <td>{{ $t->find($listrik->id)->penggunaan->customer->nm_customer }}</td>
+                            <td>{{ $t->find($listrik->id)->penggunaan->layanan->nm_layanan }}</td>
+                            <td>{{ $t->find($listrik->id)->penggunaan->periode->deskripsi }}</td>
+                            <td>{{ $listrik->meter_awal }}</td>
+                            <td>{{ $listrik->meter_akhir }}</td>
+                            <td>{{ $listrik->meter_digunakan }}</td>
+                            <td>{{ $listrik->tagihan }}</td>
+                            <td>
+                                <a href="{{ route('bill.edit', $listrik->id)}}"><i class="fa fa-pencil"></i></a>
+                                <span>&nbsp;</span>
+                                <a href="{{ route('bill.generate', $listrik->id)}}"><i class="fa fa-file-text"></i></a>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>

@@ -17,4 +17,16 @@ class Customer extends Model
     {
         return $this->hasMany('TesBilling\Models\Penggunaan', 'customer_id', 'id');
     }
+
+    public function tagihan()
+    {
+        return $this->hasManyThrough(
+            'TesBilling\Models\Tagihan', 
+            'TesBilling\Models\Penggunaan',
+            'customer_id',
+            'penggunaan_id',
+            'id',
+            'id'
+        );
+    }
 }

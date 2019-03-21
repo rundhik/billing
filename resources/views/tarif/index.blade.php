@@ -32,7 +32,7 @@
                             @for ($i = 0; $i <= $count; $i++)
                             <td>{{ $a->tarif[$i] }}</td>
                             @endfor
-                            <td><a href="{{ route('rare.edit', $air->id)}}"><i class="fa fa-pencil"></i></a></td>
+                            <td><a href="{{ route('fare.edit', $air->id)}}"><i class="fa fa-pencil"></i></a></td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -68,7 +68,7 @@
                             @for ($k = 0; $k <= $count; $k++)
                             <td>{{ $l->tarif[$k] }}</td>
                             @endfor
-                            <td><a href="{{ route('rare.edit', $listrik->id)}}"><i class="fa fa-pencil"></i></a></td>
+                            <td><a href="{{ route('fare.edit', $listrik->id)}}"><i class="fa fa-pencil"></i></a></td>
                         </tr>
                         @endforeach
                     </tbody>

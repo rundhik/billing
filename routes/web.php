@@ -21,6 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth'], function () {
     Route::resource('usage', 'PenggunaanController');
-    Route::resource('rare', 'TarifController');
+    Route::resource('fare', 'TarifController');
     Route::resource('bill', 'TagihanController');
+    Route::get('bill/generate/{gen}', 'TagihanController@generate')->name('bill.generate');
 });
