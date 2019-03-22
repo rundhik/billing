@@ -40,11 +40,12 @@
                             <td>{{ number_format($air->meter_awal,0,'.',',') }}</td>
                             <td>{{ number_format($air->meter_akhir,0,'.',',') }}</td>
                             <td>{{ number_format($air->meter_digunakan,0,'.',',') }}</td>
-                            <td>{{ "Rp. ".number_format($air->tagihan,0,'.',',') }}</td>
+                            <td>{{ "Rp. ".number_format(array_sum($air->tagihan),0,'.',',') }}</td>
                             <td>
-                                <a href="{{ route('bill.edit', $air->id)}}"><i class="fa fa-pencil" alt='Generate Tagihan'></i></a>
-                                <span>&nbsp;</span>
-                                <a href="{{ route('bill.print', $air->id)}}"><i class="fa fa-file-text" alt='Cetak'></i></a>
+                                <a href="{{ route('bill.show', $air->id)}}" class="mb-xs mt-xs mr-xs btn btn-xs btn-default">
+                                    <i class="fa fa-file-text" alt='Cetak'></i>
+                                    <span >Cetak ulang</span>
+                                </a>
                             </td>
                         </tr>
                         @endforeach
@@ -89,11 +90,12 @@
                             <td>{{ number_format($listrik->meter_awal,0,'.',',') }}</td>
                             <td>{{ number_format($listrik->meter_akhir,0,'.',',') }}</td>
                             <td>{{ number_format($listrik->meter_digunakan,0,'.',',') }}</td>
-                            <td>{{ "Rp. ".number_format($listrik->tagihan,0,'.',',') }}</td>
+                            <td>{{ "Rp. ".number_format(array_sum($listrik->tagihan),0,'.',',') }}</td>
                             <td>
-                                <a href="{{ route('bill.edit', $listrik->id)}}"><i class="fa fa-pencil"></i></a>
-                                <span>&nbsp;</span>
-                                <a href="{{ route('bill.print', $listrik->id)}}"><i class="fa fa-file-text"></i></a>
+                                <a href="{{ route('bill.show', $listrik->id)}}" class="mb-xs mt-xs mr-xs btn btn-xs btn-default">
+                                        <i class="fa fa-file-text" alt='Cetak'></i>
+                                        <span >Cetak ulang</span>
+                                </a>
                             </td>
                         </tr>
                         @endforeach

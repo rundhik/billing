@@ -40,37 +40,29 @@ class TagihanController extends Controller
         $usage = $u;
         $tar = Tarif::find(1)->pluck('tarif')->first();
         $tmp = 0;
-
+        $tag = [];
         if ($usage <= 10) {
-            $tag = $tar[0] * 10;
+            $tag[0] = $tar[0] * 10;
         } else {
             for ($i=0; $i < count($tar); $i++) { 
                 if ( $usage > 10 && $i==0 ) {
-                    $tag = $tar[$i] * 10;
-                    $tmp = $tag + $tmp;
+                    $tag[$i] = $tar[$i] * 10;
                     $usage = $usage - 10;
                 } elseif ( $usage >= 10 && $i==1 ) {
-                    $tag = $tar[$i] * 10;
-                    $tmp = $tag + $tmp;
+                    $tag[$i] = $tar[$i] * 10;
                     $usage = $usage - 10;
                 } elseif ( $usage >= 10 && $i==2 ) {
-                    $tag = $tar[$i] * 10;
-                    $tmp = $tag + $tmp;
+                    $tag[$i] = $tar[$i] * 10;
                     $usage = $usage - 10;
                 } elseif ( $usage >= 10 && $i==3 ) {
-                    $tag = $tar[$i] * $usage;
-                    $tmp = $tag + $tmp;
-                    $tag = $tmp;
+                    $tag[$i] = $tar[$i] * $usage;
                     break;
                 } else {
-                    $tag = $tar[$i] * $usage;
-                    $tmp = $tag + $tmp;
-                    $tag = $tmp;
+                    $tag[$i] = $tar[$i] * $usage;
                     break;
                 }
             }
         }
-        var_dump($tag) or die();
         return ($tag);
     }
     public function create($c, $l, $p, $m)
@@ -87,8 +79,8 @@ class TagihanController extends Controller
             ['periode_id', '=', $p]
             ])->first();
         if ($ub == null) {
-            $ub = 0;
-            $u = $un->meter - $ub;
+            $x = 0;
+            $u = $un->meter - $x;
         } else {
             $u = $un->meter - $ub->meter;
         }

@@ -42,12 +42,13 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">Meter bulan lalu</label>
                         <div class="col-md-3">
-                            @if ($ub == 0 )
-                                <input type="hidden" class="form-control" name="meter_awal" value="{{ $ub }}">
-                                <input type="text" class="form-control" value="{{ $ub }}" disabled>
-                            @else
+                            @if ($ub !== null )
                                 <input type="hidden" class="form-control" name="meter_awal" value="{{ $ub->meter }}">
                                 <input type="text" class="form-control" value="{{ $ub->meter }}" disabled>
+                            @else
+                                @php $ub = 0 @endphp
+                                <input type="hidden" class="form-control" name="meter_awal" value="{{ $ub }}">
+                                <input type="text" class="form-control" value="{{ $ub }}" disabled>
                             @endif
                         </div>
                     </div>
@@ -56,9 +57,6 @@
                         <div class="col-md-3">
                             <input type="hidden" class="form-control" name="meter_akhir" value="{{ $un->meter }}">
                             <input type="text" class="form-control" value="{{ $un->meter }}" disabled>
-                            {{-- @if ($p !== NULL )
-                            <span class="help-block">Harus di isi lebih besar dari penggunaan sebelumnya. Penggunaan sebelumnya sebesar {{ $p->meter }}  </span>
-                            @endif --}}
                         </div>
                     </div>
                     <div class="form-group">
@@ -66,15 +64,11 @@
                         <div class="col-md-3">
                             <input type="hidden" class="form-control" name="meter_digunakan" value="{{ $u }}">
                             <input type="text" class="form-control" value="{{ $u }}" disabled>
-                            {{-- @if ($p !== NULL )
-                            <span class="help-block">Harus di isi lebih besar dari penggunaan sebelumnya. Penggunaan sebelumnya sebesar {{ $p->meter }}  </span>
-                            @endif --}}
                         </div>
                     </div>
                     <div class="row">
                             <div class="col-sm-9 col-sm-offset-3">
                                 <button class="btn btn-primary" type="submit">Generate Tagihan</button>
-                                {{-- <a href="{{ route('usage.index') }}" class="btn btn-default">Batal</a> --}}
                             </div>
                     </div>
                 </form>

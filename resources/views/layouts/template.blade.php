@@ -76,12 +76,6 @@
 						<div class="dropdown-menu">
 							<ul class="list-unstyled">
 								<li class="divider"></li>
-								{{-- <li>
-									<a role="menuitem" tabindex="-1" href="pages-user-profile.html"><i class="fa fa-user"></i> My Profile</a>
-								</li>
-								<li>
-									<a role="menuitem" tabindex="-1" href="#" data-lock-screen="true"><i class="fa fa-lock"></i> Lock Screen</a>
-								</li> --}}
 								<li>
 									<a role="menuitem" tabindex="-1" href="{{ route('logout') }}" onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();"><i class="fa fa-power-off"></i> {{ __('Logout') }}</a>
@@ -121,79 +115,27 @@
 											<span>Dashboard</span>
 										</a>
 									</li>
-									<li class="nav-parent nav-expanded nav-active">
-										<a>
-											<i class="fa fa-table" aria-hidden="true"></i>
-											<span>Tables</span>
+									<li>
+                                        <a href="{{ route('fare.index') }}">
+                                            
+											<i class="fa fa-money" aria-hidden="true"></i>
+											<span>Tarif</span>
 										</a>
-										<ul class="nav nav-children">
-											<li>
-												<a href="tables-basic.html">
-													 Basic
-												</a>
-											</li>
-											<li class="nav-active">
-												<a href="tables-advanced.html">
-													 Advanced
-												</a>
-											</li>
-											<li>
-												<a href="tables-responsive.html">
-													 Responsive
-												</a>
-											</li>
-											<li>
-												<a href="tables-editable.html">
-													 Editable
-												</a>
-											</li>
-											<li>
-												<a href="tables-ajax.html">
-													 Ajax
-												</a>
-											</li>
-											<li>
-												<a href="tables-pricing.html">
-													 Pricing
-												</a>
-											</li>
-										</ul>
 									</li>
-									
-									<li class="nav-parent">
-										<a>
-											<i class="fa fa-align-left" aria-hidden="true"></i>
-											<span>Menu Levels</span>
+									<li>
+                                        <a href="{{ route('usage.index') }}">
+                                            
+											<i class="fa fa-tachometer" aria-hidden="true"></i>
+											<span>Meter penggunaan</span>
 										</a>
-										<ul class="nav nav-children">
-											<li>
-												<a>First Level</a>
-											</li>
-											<li class="nav-parent">
-												<a>Second Level</a>
-												<ul class="nav nav-children">
-													<li class="nav-parent">
-														<a>Third Level</a>
-														<ul class="nav nav-children">
-															<li>
-																<a>Third Level Link #1</a>
-															</li>
-															<li>
-																<a>Third Level Link #2</a>
-															</li>
-														</ul>
-													</li>
-													<li>
-														<a>Second Level Link #1</a>
-													</li>
-													<li>
-														<a>Second Level Link #2</a>
-													</li>
-												</ul>
-											</li>
-										</ul>
 									</li>
-									
+									<li>
+                                        <a href="{{ route('bill.index') }}">
+                                            
+											<i class="fa fa-file-text" aria-hidden="true"></i>
+											<span>Tagihan</span>
+										</a>
+									</li>
 								</ul>
 							</nav>
 				
@@ -225,20 +167,6 @@
 
                     <header class="page-header">
                             <h2>@yield('judul')</h2>
-                
-                            {{-- <div class="right-wrapper pull-right">
-                                <ol class="breadcrumbs">
-                                    <li>
-                                    <a href="index.html">
-                                        <i class="fa fa-home"></i>
-                                    </a>
-                                    </li>
-                                    <li><span>Tables</span></li>
-                                    <li><span>Advanced</span></li>
-                                </ol>
-                
-                                <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
-                            </div> --}}
                     </header>
 
                     @yield('konten')

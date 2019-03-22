@@ -43,7 +43,7 @@
                         <div class="col-md-3">
                             <input type="text" class="form-control" name="meter">
                             @if ($p !== NULL )
-                            <span class="help-block">Harus di isi lebih besar dari penggunaan sebelumnya. Penggunaan sebelumnya sebesar {{ $p->meter }}  </span>
+                            <span class="help-block">Harus diisi lebih besar dari penggunaan sebelumnya.<br/> Meter bulan lalu : {{ $p->meter }}  </span>
                             @endif
                         </div>
                     </div>
