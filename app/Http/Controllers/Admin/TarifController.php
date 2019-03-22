@@ -20,7 +20,7 @@ class TarifController extends Controller
         $l = $t->find(2);
         $ta = $t->where('layanan_id', 1)->get();
         $tl = $t->where('layanan_id', 2)->get();
-        $count = 3;
+        $count = count($a->tarif);
         return view('tarif.index', compact('t', 'ta', 'tl', 'count','l','a'));
     }
 
