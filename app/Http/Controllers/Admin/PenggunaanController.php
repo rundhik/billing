@@ -59,9 +59,14 @@ class PenggunaanController extends Controller
         $p->layanan_id = $request->layanan_id;
         $p->periode_id = $request->periode_id;
         $p->meter = $request->meter;
-        // var_dump($p) or die();
         $p->save();
-        return redirect()->route('usage.index')->with('success', 'Sukses');
+        return redirect()->route('bill.generate',[
+            $request->customer_id,
+            $request->layanan_id,
+            $request->periode_id,
+            $request->meter
+        ] 
+        )->with('success', 'Sukses');
     }
 
     /**

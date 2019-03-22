@@ -7,6 +7,7 @@ use TesBilling\Http\Controllers\Controller;
 use TesBilling\Models\Tagihan;
 use TesBilling\Models\Layanan;
 use TesBilling\Models\Penggunaan;
+use TesBilling\Models\Tarif;
 
 class TagihanController extends Controller
 {
@@ -34,25 +35,70 @@ class TagihanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function generate($id)
+    public function generate($u,$l)
     {
-        return ('Hello');
+        $usage = $u;
+        $tar = Tarif::find(1)->pluck('tarif')->first();
+        $tmp = 0;
+
+        if ($usage <= 10) {
+            $tag = $tar[0] * 10;
+        } else {
+            for ($i=0; $i < count($tar); $i++) { 
+                if ( $usage > 10 && $i==0 ) {
+                    $tag = $tar[$i] * 10;
+                    $tmp = $tag + $tmp;
+                    $usage = $usage - 10;
+                } elseif ( $usage >= 10 && $i==1 ) {
+                    $tag = $tar[$i] * 10;
+                    $tmp = $tag + $tmp;
+                    $usage = $usage - 10;
+                } elseif ( $usage >= 10 && $i==2 ) {
+                    $tag = $tar[$i] * 10;
+                    $tmp = $tag + $tmp;
+                    $usage = $usage - 10;
+                } elseif ( $usage >= 10 && $i==3 ) {
+                    $tag = $tar[$i] * $usage;
+                    $tmp = $tag + $tmp;
+                    $tag = $tmp;
+                    break;
+                } else {
+                    $tag = $tar[$i] * $usage;
+                    $tmp = $tag + $tmp;
+                    $tag = $tmp;
+                    break;
+                }
+            }
+        }
+        var_dump($tag) or die();
+        return ($tag);
     }
-    public function create()
+    public function create($c, $l, $p, $m)
     {
-        // $u = new Penggunaan;
-        $cust = 1;
-        $lay = 1;
-        $per = 1;
-        $u->where([ 
-            ['customer_id', '=' , 1], 
-            ['layanan_id', '=', 1], 
-            ['periode_id', '=', 2]
-            ])->first()->layanan->nm_layanan;
-        $t->find(1)->penggunaan->id;
-        $t->find(1)->penggunaan->layanan->nm_layanan;
-        $t->find(1)->penggunaan->customer->nm_customer;
-        $t->find(1)->penggunaan->periode->deskripsi;
+        $c = (int)$c; $l = (int)$l; $p = (int)$p; $m = (int)$m;
+        $ub = Penggunaan::where([ 
+            ['customer_id', '=' , $c], 
+            ['layanan_id', '=', $l], 
+            ['periode_id', '=', $p-1]
+            ])->first();
+        $un = Penggunaan::where([ 
+            ['customer_id', '=' , $c], 
+            ['layanan_id', '=', $l], 
+            ['periode_id', '=', $p]
+            ])->first();
+        if ($ub == null) {
+            $ub = 0;
+            $u = $un->meter - $ub;
+        } else {
+            $u = $un->meter - $ub->meter;
+        }
+        $lay = $un->layanan->nm_layanan;
+        $cust = $un->customer->nm_customer;
+        $per = $un->periode->deskripsi;
+        return view('tagihan.create', compact(
+            'lay', 'cust', 'per', 
+            'u', 'c', 'l', 'p',
+             'm', 'un', 'ub'));
     }
 
     /**
@@ -63,7 +109,19 @@ class TagihanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $t = new Tagihan;
+        $t->penggunaan_id = $request->penggunaan_id;
+        if ($request->meter_awal ==  0) {
+            $t->meter_awal = null;
+        } else {
+            $t->meter_awal = $request->meter_awal;
+        }
+        $t->meter_akhir = $request->meter_akhir;
+        $t->meter_digunakan = $request->meter_digunakan;
+        $t->tagihan_kode = "c".$request->customer_id.$request->layanan_id.$request->periode_id;
+        $t->tagihan = $this->generate($request->meter_digunakan,$request->layanan_id);
+        $t->save();
+        return redirect()->route('bill.index');
     }
 
     /**

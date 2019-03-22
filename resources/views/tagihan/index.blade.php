@@ -37,14 +37,14 @@
                             <td>{{ $t->find($air->id)->penggunaan->customer->nm_customer }}</td>
                             <td>{{ $t->find($air->id)->penggunaan->layanan->nm_layanan }}</td>
                             <td>{{ $t->find($air->id)->penggunaan->periode->deskripsi }}</td>
-                            <td>{{ $air->meter_awal }}</td>
-                            <td>{{ $air->meter_akhir }}</td>
-                            <td>{{ $air->meter_digunakan }}</td>
-                            <td>{{ $air->tagihan }}</td>
+                            <td>{{ number_format($air->meter_awal,0,'.',',') }}</td>
+                            <td>{{ number_format($air->meter_akhir,0,'.',',') }}</td>
+                            <td>{{ number_format($air->meter_digunakan,0,'.',',') }}</td>
+                            <td>{{ "Rp. ".number_format($air->tagihan,0,'.',',') }}</td>
                             <td>
                                 <a href="{{ route('bill.edit', $air->id)}}"><i class="fa fa-pencil" alt='Generate Tagihan'></i></a>
                                 <span>&nbsp;</span>
-                                <a href="{{ route('bill.generate', $air->id)}}"><i class="fa fa-file-text" alt='Cetak'></i></a>
+                                <a href="{{ route('bill.print', $air->id)}}"><i class="fa fa-file-text" alt='Cetak'></i></a>
                             </td>
                         </tr>
                         @endforeach
@@ -86,14 +86,14 @@
                             <td>{{ $t->find($listrik->id)->penggunaan->customer->nm_customer }}</td>
                             <td>{{ $t->find($listrik->id)->penggunaan->layanan->nm_layanan }}</td>
                             <td>{{ $t->find($listrik->id)->penggunaan->periode->deskripsi }}</td>
-                            <td>{{ $listrik->meter_awal }}</td>
-                            <td>{{ $listrik->meter_akhir }}</td>
-                            <td>{{ $listrik->meter_digunakan }}</td>
-                            <td>{{ $listrik->tagihan }}</td>
+                            <td>{{ number_format($listrik->meter_awal,0,'.',',') }}</td>
+                            <td>{{ number_format($listrik->meter_akhir,0,'.',',') }}</td>
+                            <td>{{ number_format($listrik->meter_digunakan,0,'.',',') }}</td>
+                            <td>{{ "Rp. ".number_format($listrik->tagihan,0,'.',',') }}</td>
                             <td>
                                 <a href="{{ route('bill.edit', $listrik->id)}}"><i class="fa fa-pencil"></i></a>
                                 <span>&nbsp;</span>
-                                <a href="{{ route('bill.generate', $listrik->id)}}"><i class="fa fa-file-text"></i></a>
+                                <a href="{{ route('bill.print', $listrik->id)}}"><i class="fa fa-file-text"></i></a>
                             </td>
                         </tr>
                         @endforeach

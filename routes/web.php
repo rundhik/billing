@@ -23,5 +23,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
     Route::resource('usage', 'PenggunaanController');
     Route::resource('fare', 'TarifController');
     Route::resource('bill', 'TagihanController');
-    Route::get('bill/generate/{gen}', 'TagihanController@generate')->name('bill.generate');
+    Route::get('bill/create/{a}/{b}/{c}/{d}', 'TagihanController@create')->name('bill.generate');
+    Route::get('bill/{p}/print', 'TagihanController@create')->name('bill.print');
 });
