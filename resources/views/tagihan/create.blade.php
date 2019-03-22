@@ -68,7 +68,7 @@
                     </div>
                     <div class="row">
                             <div class="col-sm-9 col-sm-offset-3">
-                                <button class="btn btn-primary" type="submit">Generate Tagihan</button>
+                                <button class="btn btn-primary" type="submit"  target="_blank">Generate Tagihan</button>
                             </div>
                     </div>
                 </form>

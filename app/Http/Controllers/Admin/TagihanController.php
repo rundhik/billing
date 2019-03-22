@@ -124,7 +124,10 @@ class TagihanController extends Controller
      */
     public function show($id)
     {
-        //
+        $t = Tagihan::find($id);
+        $count = count($t->tagihan);
+        $u = $t->meter_digunakan;
+        return view('tagihan.show', compact('t', 'count', 'u'));
     }
 
     /**

@@ -14,7 +14,7 @@
             </header>
 
             <div class="panel-body">
-                <table class="table table-bordered table-striped mb-none" data-swf-path="{{ asset('css/copy_csv_xls_pdf.swf') }}">
+                <table class="table table-bordered table-striped mb-none" id="datatable-tabletools" data-swf-path="{{ asset('css/copy_csv_xls_pdf.swf') }}">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -42,7 +42,7 @@
                             <td>{{ number_format($air->meter_digunakan,0,'.',',') }}</td>
                             <td>{{ "Rp. ".number_format(array_sum($air->tagihan),0,'.',',') }}</td>
                             <td>
-                                <a href="{{ route('bill.show', $air->id)}}" class="mb-xs mt-xs mr-xs btn btn-xs btn-default">
+                                <a href="{{ route('bill.show', $air->id)}}" class="mb-xs mt-xs mr-xs btn btn-xs btn-default"  target="_blank">
                                     <i class="fa fa-file-text" alt='Cetak'></i>
                                     <span >Cetak ulang</span>
                                 </a>
@@ -64,7 +64,7 @@
             </header>
 
             <div class="panel-body">
-                <table class="table table-bordered table-striped mb-none" data-swf-path="{{ asset('css/copy_csv_xls_pdf.swf') }}">
+                <table class="table table-bordered table-striped mb-none" id="datatable-tabletools2" data-swf-path="{{ asset('css/copy_csv_xls_pdf.swf') }}">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -92,7 +92,7 @@
                             <td>{{ number_format($listrik->meter_digunakan,0,'.',',') }}</td>
                             <td>{{ "Rp. ".number_format(array_sum($listrik->tagihan),0,'.',',') }}</td>
                             <td>
-                                <a href="{{ route('bill.show', $listrik->id)}}" class="mb-xs mt-xs mr-xs btn btn-xs btn-default">
+                                <a href="{{ route('bill.show', $listrik->id)}}" class="mb-xs mt-xs mr-xs btn btn-xs btn-default"  target="_blank">
                                         <i class="fa fa-file-text" alt='Cetak'></i>
                                         <span >Cetak ulang</span>
                                 </a>
