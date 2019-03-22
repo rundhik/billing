@@ -5,6 +5,9 @@ namespace TesBilling\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use TesBilling\Http\Controllers\Controller;
 use TesBilling\Models\Penggunaan;
+use TesBilling\Models\Customer;
+use TesBilling\Models\Layanan;
+use TesBilling\Models\Periode;
 
 class PenggunaanController extends Controller
 {
@@ -15,11 +18,11 @@ class PenggunaanController extends Controller
      */
     public function index()
     {
-        $p = new Penggunaan;
-        $pe = $p;
-        $p = $p->get()->all();
-        // var_dump($p) or die;
-        return view('penggunaan.index', compact('p', 'pe'));
+        $pe = new Penggunaan;
+        $p = Penggunaan::get()->all();
+        $c = Customer::get()->all();
+        $l = Layanan::get()->all();
+        return view('penggunaan.index', compact('p', 'pe','c','l'));
     }
 
     /**
@@ -27,9 +30,20 @@ class PenggunaanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
+    public function create(Request $customer)
+    {   
+        $c = Customer::find($customer->pelanggan);
+        $l = Layanan::find($customer->layanan);
+        $p = Penggunaan::where([ 
+            ['customer_id', '=', $customer->pelanggan], 
+            ['layanan_id', '=', $customer->layanan] ])
+            ->latest()->first();
+        if ($p == NULL) {
+            $pr = Periode::find(1);
+        } else {
+            $pr = Periode::find($p->periode_id+1);
+        }
+        return view('penggunaan.create', compact('c', 'l', 'p', 'pr'));
     }
 
     /**
@@ -40,7 +54,19 @@ class PenggunaanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $p = new Penggunaan;
+        $p->customer_id = $request->customer_id;
+        $p->layanan_id = $request->layanan_id;
+        $p->periode_id = $request->periode_id;
+        $p->meter = $request->meter;
+        $p->save();
+        return redirect()->route('bill.generate',[
+            $request->customer_id,
+            $request->layanan_id,
+            $request->periode_id,
+            $request->meter
+        ] 
+        )->with('success', 'Sukses');
     }
 
     /**

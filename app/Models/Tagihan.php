@@ -9,6 +9,10 @@ class Tagihan extends Model
 {
     use SoftDeletes;
     protected $table = 'tagihans';
+    protected $guarded = array();
+    protected $casts = [
+        'tagihan' => 'array'
+    ];
     protected $fillable = [
         'penggunaan_id', 'tagihan_kode', 'tagihan'
     ];

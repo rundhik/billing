@@ -15,7 +15,7 @@
 
             <div class="panel-body">
 
-                <form class="form-horizontal form-bordered" method="POST" action="{{ route('rare.update', $t->id) }}">
+                <form class="form-horizontal form-bordered" method="POST" action="{{ route('fare.update', $t->id) }}">
                     @csrf 
                     @method('PUT')
                     <div class="form-group">
@@ -61,7 +61,7 @@
                     <div class="row">
                             <div class="col-sm-9 col-sm-offset-3">
                                 <button class="btn btn-primary" type="submit">Simpan</button>
-                                <a href="{{ route('rare.index') }}" class="btn btn-default">Batal</a>
+                                <a href="{{ route('fare.index') }}" class="btn btn-default">Batal</a>
                             </div>
                     </div>
                 </form>

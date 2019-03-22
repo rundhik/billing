@@ -31,6 +31,18 @@ class CustomersTableSeeder extends Seeder
                 'alamat' => 'Kamar 3',
                 'telp' => '031-0000003'
             ],
+            [
+                'id' => 4,
+                'nm_customer' => 'Customer D',
+                'alamat' => 'Kamar 4',
+                'telp' => '031-0000004'
+            ],
+            [
+                'id' => 5,
+                'nm_customer' => 'Customer E',
+                'alamat' => 'Kamar 5',
+                'telp' => '031-0000005'
+            ],
         ];
 
         foreach ($val as $key => $value) {
