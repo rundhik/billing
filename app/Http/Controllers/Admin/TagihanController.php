@@ -38,7 +38,8 @@ class TagihanController extends Controller
     public function generate($u,$l)
     {
         $usage = $u;
-        $tar = Tarif::find(1)->pluck('tarif')->first();
+        $tar = Tarif::find($l)->tarif;
+        // var_dump($tar) or die();
         $tmp = 0;
         $tag = [];
         if ($usage <= 10) {
@@ -101,7 +102,7 @@ class TagihanController extends Controller
      */
     public function store(Request $request)
     {
-        $t = new Tagihan;
+        $t = new Tagihan; $tar = new Tarif;
         $t->penggunaan_id = $request->penggunaan_id;
         if ($request->meter_awal ==  0) {
             $t->meter_awal = null;
@@ -111,6 +112,7 @@ class TagihanController extends Controller
         $t->meter_akhir = $request->meter_akhir;
         $t->meter_digunakan = $request->meter_digunakan;
         $t->tagihan_kode = "c".$request->customer_id.$request->layanan_id.$request->periode_id;
+        $t->tarif = $tar->find($request->layanan_id)->tarif;
         $t->tagihan = $this->generate($request->meter_digunakan,$request->layanan_id);
         $t->save();
         return redirect()->route('bill.index');

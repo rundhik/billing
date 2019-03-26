@@ -76,29 +76,29 @@
                         @for ($i = 0; $i < $count; $i++)
                             @if ($i == 0)
                                 <tr>
-                                    <td>Pemakaian 0 - 1 @if ($t->penggunaan->layanan_id == 1) (m3) @else Kwh @endif</td>
-                                    <td class="text-center">{{ number_format($t->penggunaan->layanan->tarif->tarif[$i],0,'.',',') }}</td>
+                                    <td>Pemakaian 0 - 10 @if ($t->penggunaan->layanan_id == 1) (m3) @else Kwh @endif</td>
+                                    <td class="text-center">{{ number_format($t->tarif[$i],0,'.',',') }}</td>
                                     <td class="text-center">@if ($u > 10) 10 @else {{ $u }} @endif @php $x = $u; $u = $u-10; @endphp</td>
                                     <td class="text-center">{{ number_format($t->tagihan[$i],0,'.',',') }} </td>
                                 </tr>
                             @elseif ( $i == 1 )
                                 <tr>
                                     <td>Pemakaian > 10 - 20 @if ($t->penggunaan->layanan_id == 1) (m3) @else Kwh @endif</td>
-                                    <td class="text-center">{{ number_format($t->penggunaan->layanan->tarif->tarif[$i],0,'.',',') }}</td>
+                                    <td class="text-center">{{ number_format($t->tarif[$i],0,'.',',') }}</td>
                                     <td class="text-center">@if ($u > 10) 10 @else {{ $u }} @endif @php $u = $u-10; @endphp</td>
                                     <td class="text-center">{{ number_format($t->tagihan[$i],0,'.',',') }} </td>
                                 </tr>
                             @elseif ( $i == 2 )
                                 <tr>
                                     <td>Pemakaian > 20 - 30 @if ($t->penggunaan->layanan_id == 1) (m3) @else Kwh @endif</td>
-                                    <td class="text-center">{{ number_format($t->penggunaan->layanan->tarif->tarif[$i],0,'.',',') }}</td>
+                                    <td class="text-center">{{ number_format($t->tarif[$i],0,'.',',') }}</td>
                                     <td class="text-center">@if ($u > 10) 10 @else {{ $u }} @endif @php $u = $u-10; @endphp</td>
                                     <td class="text-center">{{ number_format($t->tagihan[$i],0,'.',',') }} </td>
                                 </tr>
                             @elseif ( $i == 3 )
                                 <tr>
                                     <td>Pemakaian > 30 @if ($t->penggunaan->layanan_id == 1) (m3) @else Kwh @endif</td>
-                                    <td class="text-center">{{ number_format($t->penggunaan->layanan->tarif->tarif[$i],0,'.',',') }}</td>
+                                    <td class="text-center">{{ number_format($t->tarif[$i],0,'.',',') }}</td>
                                     <td class="text-center">{{ $u }}</td>
                                     <td class="text-center">{{ number_format($t->tagihan[$i],0,'.',',') }} </td>
                                 </tr>

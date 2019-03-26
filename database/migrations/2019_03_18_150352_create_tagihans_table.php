@@ -20,6 +20,7 @@ class CreateTagihansTable extends Migration
             $table->bigInteger('meter_akhir')->nullable();
             $table->bigInteger('meter_digunakan')->nullable();
             $table->string('tagihan_kode', 100)->nullable();
+            $table->text('tarif');
             $table->text('tagihan');
             $table->timestamps();
             $table->softDeletes();

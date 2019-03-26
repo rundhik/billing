@@ -11,10 +11,11 @@ class Tagihan extends Model
     protected $table = 'tagihans';
     protected $guarded = array();
     protected $casts = [
-        'tagihan' => 'array'
+        'tagihan' => 'array', 
+        'tarif' => 'array'
     ];
     protected $fillable = [
-        'penggunaan_id', 'tagihan_kode', 'tagihan'
+        'penggunaan_id', 'tagihan_kode', 'tagihan', 'tarif'
     ];
 
     public function penggunaan()
