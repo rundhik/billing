@@ -18,46 +18,74 @@
                 <form class="form-horizontal form-bordered" method="POST" action="{{ route('fare.update', $t->id) }}">
                     @csrf 
                     @method('PUT')
-                    <div class="form-group">
-                        @if ($t->id == 1)
-                        <label class="col-md-3 control-label">Tarif 0 - 10 m3</label>
-                        @else
-                        <label class="col-md-3 control-label">Tarif 0 - 10 KWh</label>
-                        @endif
-                        <div class="col-md-3">
-                            <input type="text" class="form-control" name="tarif[0]" value="{{ $t->tarif[0]}}">
+                    @for ($i = 0; $i < $count; $i++)
+                    <label>Rekursif ke {{$i+1}}</label>
+                    @if($i == 0)
+                        <div class="form-group">
+                            @for ($j = 0; $j < count($t->tarif[$i]); $j++)
+                            @if($j==0) 
+                                <label class="col-md-2 control-label">Min</label>
+                                <div class="col-md-2">
+                                    <input type="text" class="form-control" name="tarif[{{$i}}][{{$j}}]" value="{{ $t->tarif[$i][$j] }}" disabled>
+                                </div>
+                                @elseif($j==1)
+                                <label class="col-md-2 control-label">Max</label>
+                                <div class="col-md-2">
+                                    <input type="text" class="form-control" name="tarif[{{$i}}][{{$j}}]" value="{{ $t->tarif[$i][$j] }}">
+                                </div>
+                                @else 
+                                <label class="col-md-2 control-label">Tarif</label>
+                                <div class="col-md-2">
+                                    <input type="text" class="form-control" name="tarif[{{$i}}][{{$j}}]" value="{{ $t->tarif[$i][$j] }}">
+                                </div>
+                                @endif
+                            @endfor
                         </div>
-                    </div>
-                    <div class="form-group">
-                        @if ($t->id == 1)
-                        <label class="col-md-3 control-label">Tarif >10 - 20 m3</label>
-                        @else
-                        <label class="col-md-3 control-label">Tarif >10 - 20 KWh</label>
-                        @endif
-                        <div class="col-md-3">
-                            <input type="text" class="form-control" name="tarif[1]" value="{{ $t->tarif[1]}}">
+                    @elseif ($i < ($count-1))
+                        <div class="form-group">
+                            @for ($j = 0; $j < count($t->tarif[$i]); $j++)
+                            @if($j==0) 
+                                <label class="col-md-2 control-label">Min</label>
+                                <div class="col-md-2">
+                                    <input type="text" class="form-control" name="tarif[{{$i-1}}][{{$j+1}}]" value="{{ $t->tarif[$i-1][$j+1] }}" disabled>
+                                </div>
+                                @elseif($j==1)
+                                <label class="col-md-2 control-label">Max</label>
+                                <div class="col-md-2">
+                                    <input type="text" class="form-control" name="tarif[{{$i}}][{{$j}}]" value="{{ $t->tarif[$i][$j] }}">
+                                </div>
+                                @else 
+                                <label class="col-md-2 control-label">Tarif</label>
+                                <div class="col-md-2">
+                                    <input type="text" class="form-control" name="tarif[{{$i}}][{{$j}}]" value="{{ $t->tarif[$i][$j] }}">
+                                </div>
+                                @endif
+                            @endfor
                         </div>
-                    </div>
-                    <div class="form-group">
-                        @if ($t->id == 1)
-                        <label class="col-md-3 control-label">Tarif >20 - 30 m3</label>
-                        @else
-                        <label class="col-md-3 control-label">Tarif >20 - 30 KWh</label>
-                        @endif
-                        <div class="col-md-3">
-                            <input type="text" class="form-control" name="tarif[2]" value="{{ $t->tarif[2]}}">
+                    @else
+                        <div class="form-group">
+                            @for ($j = 0; $j < count($t->tarif[$i]); $j++)
+                            @if($j==0) 
+                                <label class="col-md-2 control-label">Min</label>
+                                <div class="col-md-2">
+                                    <input type="text" class="form-control" name="tarif[{{$i-1}}][{{$j+1}}]" value="{{ $t->tarif[$i-1][$j+1] }}" disabled>
+                                </div>
+                                @elseif($j==1)
+                                <label class="col-md-2 control-label">Max</label>
+                                <div class="col-md-2">
+                                    <input type="text" class="form-control" name="tarif[{{$i}}][{{$j}}]" value="{{ $t->tarif[$i][$j] }}" disabled>
+                                </div>
+                                @else 
+                                <label class="col-md-2 control-label">Tarif</label>
+                                <div class="col-md-2">
+                                    <input type="text" class="form-control" name="tarif[{{$i}}][{{$j}}]" value="{{ $t->tarif[$i][$j] }}">
+                                </div>
+                                @endif
+                            @endfor
                         </div>
-                    </div>
-                    <div class="form-group">
-                        @if ($t->id == 1)
-                        <label class="col-md-3 control-label">Tarif >30 m3</label>
-                        @else
-                        <label class="col-md-3 control-label">Tarif >30 KWh</label>
-                        @endif
-                        <div class="col-md-3">
-                            <input type="text" class="form-control" name="tarif[3]" value="{{ $t->tarif[3]}}">
-                        </div>
-                    </div>
+                    @endif
+                    
+                    @endfor
                     <div class="row">
                             <div class="col-sm-9 col-sm-offset-3">
                                 <button class="btn btn-primary" type="submit">Simpan</button>

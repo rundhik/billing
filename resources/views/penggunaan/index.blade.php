@@ -30,7 +30,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">Layanan :</label>
                         <div class="col-md-6">
-                            <select name='layanan' data-plugin-selectTwo class="form-control populate" data-plugin-options='{ "minimumInputLength": 2 }'>
+                            <select name='layanan' class="form-control populate">
                                     <option value=""></option>
                                     @foreach ($l as $layanan)
                                         <option value="{{ $layanan->id }}">{{ $layanan->nm_layanan }}</option>

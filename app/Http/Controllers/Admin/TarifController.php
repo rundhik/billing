@@ -20,8 +20,9 @@ class TarifController extends Controller
         $l = $t->find(2);
         $ta = $t->where('layanan_id', 1)->get();
         $tl = $t->where('layanan_id', 2)->get();
-        $count = count($a->tarif);
-        return view('tarif.index', compact('t', 'ta', 'tl', 'count','l','a'));
+        $counta = count($a->tarif);
+        $countl = count($l->tarif);
+        return view('tarif.index', compact('t', 'ta', 'tl', 'counta', 'countl','l','a'));
     }
 
     /**
@@ -66,8 +67,9 @@ class TarifController extends Controller
     {
         $t = new Tarif;
         $t = $t->find($id);
+        $count = count($t->tarif);
         $tar = $t->where('layanan_id', $id)->get();
-        return view('tarif.edit', compact('t', 'tar'));
+        return view('tarif.edit', compact('t', 'tar', 'count'));
     }
 
     /**

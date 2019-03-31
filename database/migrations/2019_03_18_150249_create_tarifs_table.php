@@ -17,6 +17,7 @@ class CreateTarifsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('layanan_id')->unsigned()->nullable();
             $table->text('tarif');
+            $table->string('satuan')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
