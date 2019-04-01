@@ -70,7 +70,7 @@ class PeriodesTableSeeder extends Seeder
             ],
             [
                 'id' => 12,
-                'kode' => '082014',
+                'kode' => '122014',
                 'deskripsi' => 'Desember 2014'
             ],
         ];
