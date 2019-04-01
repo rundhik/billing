@@ -37,7 +37,7 @@ class TagihanController extends Controller
      */
     public function generate($u,$l)
     {
-        $usage = $u;
+        $usage = (int)$u;
         $tar = Tarif::find($l)->tarif;
         $tag = [];
         if ($usage <= ($tar[0][1] - $tar[0][0]) ) {
