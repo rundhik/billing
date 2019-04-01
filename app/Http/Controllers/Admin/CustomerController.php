@@ -4,9 +4,9 @@ namespace TesBilling\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use TesBilling\Http\Controllers\Controller;
-use TesBilling\Models\Tarif;
+use TesBilling\Models\Customer;
 
-class TarifController extends Controller
+class CustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,14 +15,8 @@ class TarifController extends Controller
      */
     public function index()
     {
-        $t = new Tarif;
-        $a = $t->find(1);
-        $l = $t->find(2);
-        $ta = $t->where('layanan_id', 1)->get();
-        $tl = $t->where('layanan_id', 2)->get();
-        $counta = count($a->tarif);
-        $countl = count($l->tarif);
-        return view('tarif.index', compact('t', 'ta', 'tl', 'counta', 'countl','l','a'));
+        $c = Customer::get();
+        return view('customer.index', compact('c'));
     }
 
     /**
@@ -32,7 +26,7 @@ class TarifController extends Controller
      */
     public function create()
     {
-        //
+        return view('customer.create');
     }
 
     /**
@@ -43,7 +37,12 @@ class TarifController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $c = new Customer;
+        $c->nm_customer = $request->nm_customer;
+        $c->alamat = $request->alamat;
+        $c->telp = $request->telp;
+        $c->save();
+        return view('customer.index')->with('success', 'Data Customer berhasil ditambahkan.');
     }
 
     /**
@@ -54,7 +53,8 @@ class TarifController extends Controller
      */
     public function show($id)
     {
-        //
+        $c = Customer::findOrFail($id);
+        return view('customer.show', compact('c'));
     }
 
     /**
@@ -65,11 +65,8 @@ class TarifController extends Controller
      */
     public function edit($id)
     {
-        $t = new Tarif;
-        $t = $t->find($id);
-        $count = count($t->tarif);
-        $tar = $t->where('layanan_id', $id)->get();
-        return view('tarif.edit', compact('t', 'tar', 'count'));
+        $c = Customer::find($id);
+        return view('customer.edit', compact('c'));
     }
 
     /**
@@ -81,18 +78,8 @@ class TarifController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $t = Tarif::find($id);
-        $x = [];
-        $x = $request->tarif;
-        for ($i=0; $i < count($request->tarif); $i++) { 
-            for ($j=0; $j < count($request->tarif[$i]); $j++) { 
-                if ($i < (count($request->tarif)) && $i > 0 && $j == 0) {
-                    $x[$i][$j] = $request->tarif[$i-1][$j+1];
-                }
-            }
-        }
-        $t->update(['tarif' => $x]);
-        return redirect()->route('fare.index')->with('success', 'Tarif berhasil diupdate');
+        $c = Customer::find($id)->update($request->all());
+        return redirect()->route('cust.index')->with('success', 'Data Customer berhasil diubah.');
     }
 
     /**
@@ -103,6 +90,8 @@ class TarifController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $c = Customer::findOrFail($id);
+        $c->delete();
+        return redirect()->route('cust.index');
     }
 }

@@ -39,27 +39,27 @@ class TagihanController extends Controller
     {
         $usage = $u;
         $tar = Tarif::find($l)->tarif;
-        // var_dump($tar) or die();
-        $tmp = 0;
         $tag = [];
-        if ($usage <= 10) {
-            $tag[0] = $tar[0] * 10;
+        if ($usage <= ($tar[0][1] - $tar[0][0]) ) {
+            $tag[0] = $tar[0][2] * ($tar[0][1] - $tar[0][0]);
         } else {
-            for ($i=0; $i < count($tar); $i++) { 
-                if ( $usage > 10 && $i==0 ) {
-                    $tag[$i] = $tar[$i] * 10;
-                    $usage = $usage - 10;
-                } elseif ( $usage >= 10 && $i==1 ) {
-                    $tag[$i] = $tar[$i] * 10;
-                    $usage = $usage - 10;
-                } elseif ( $usage >= 10 && $i==2 ) {
-                    $tag[$i] = $tar[$i] * 10;
-                    $usage = $usage - 10;
-                } elseif ( $usage >= 10 && $i==3 ) {
-                    $tag[$i] = $tar[$i] * $usage;
+            for ($i = 0; $i < count($tar); $i++) { 
+                if ( $usage > ($tar[$i][1] - $tar[$i][0]) && $i == 0 ) {
+                    $tag[$i] = $tar[$i][2] * ($tar[$i][1] - $tar[$i][0]);
+                    $usage = $usage - ($tar[$i][1] - $tar[$i][0]);
+                } elseif ( $usage >= ($tar[$i][1] - $tar[$i][0]) && $i == 1 ) {
+                    $tag[$i] = $tar[$i][2] * ($tar[$i][1] - $tar[$i][0]);
+                    $usage = $usage - ($tar[$i][1] - $tar[$i][0]);
+                } elseif ( $usage >= ($tar[$i][1] - $tar[$i][0]) && $i == 2 ) {
+                    $tag[$i] = $tar[$i][2] * ($tar[$i][1] - $tar[$i][0]);
+                    $usage = $usage - ($tar[$i][1] - $tar[$i][0]);
+                } elseif ( $usage >= 10 && $i == 3 ) {
+                    $tag[$i] = $tar[$i][2] * $usage;
+                    $usage = $usage - $usage;
                     break;
                 } else {
-                    $tag[$i] = $tar[$i] * $usage;
+                    $tag[$i] = $tar[$i][2] * $usage;
+                    $usage = $usage - $usage;
                     break;
                 }
             }
@@ -115,7 +115,10 @@ class TagihanController extends Controller
         $t->tarif = $tar->find($request->layanan_id)->tarif;
         $t->tagihan = $this->generate($request->meter_digunakan,$request->layanan_id);
         $t->save();
-        return redirect()->route('bill.index');
+        return redirect()->route('bill.index')->with(
+            'success', 
+            "Tagihan ". Penggunaan::find($request->layanan_id)->layanan->nm_layanan. " milik " .Penggunaan::find($request->penggunaan_id)->customer->nm_customer. " periode ". Penggunaan::find($request->penggunaan_id)->periode->deskripsi." berhasil dibuat."
+        );
     }
 
     /**
@@ -127,9 +130,10 @@ class TagihanController extends Controller
     public function show($id)
     {
         $t = Tagihan::find($id);
+        $tar = new Tarif;
         $count = count($t->tagihan);
         $u = $t->meter_digunakan;
-        return view('tagihan.show', compact('t', 'count', 'u'));
+        return view('tagihan.show', compact('t', 'count', 'u', 'tar'));
     }
 
     /**

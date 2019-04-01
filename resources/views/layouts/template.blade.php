@@ -116,6 +116,13 @@
 										</a>
 									</li>
 									<li>
+                                        <a href="{{ route('cust.index') }}">
+                                            
+											<i class="fa fa-users" aria-hidden="true"></i>
+											<span>Customer</span>
+										</a>
+									</li>
+									<li>
                                         <a href="{{ route('fare.index') }}">
                                             
 											<i class="fa fa-money" aria-hidden="true"></i>

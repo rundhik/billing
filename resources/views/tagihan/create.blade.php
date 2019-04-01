@@ -40,6 +40,13 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label class="col-md-3 control-label">Meter bulan ini</label>
+                        <div class="col-md-3">
+                            <input type="hidden" class="form-control" name="meter_akhir" value="{{ $un->meter }}">
+                            <input type="text" class="form-control" value="{{ $un->meter }}" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class="col-md-3 control-label">Meter bulan lalu</label>
                         <div class="col-md-3">
                             @if ($ub !== null )
@@ -50,13 +57,6 @@
                                 <input type="hidden" class="form-control" name="meter_awal" value="{{ $ub }}">
                                 <input type="text" class="form-control" value="{{ $ub }}" disabled>
                             @endif
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label">Meter bulan ini</label>
-                        <div class="col-md-3">
-                            <input type="hidden" class="form-control" name="meter_akhir" value="{{ $un->meter }}">
-                            <input type="text" class="form-control" value="{{ $un->meter }}" disabled>
                         </div>
                     </div>
                     <div class="form-group">
