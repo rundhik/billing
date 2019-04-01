@@ -40,8 +40,8 @@ class TagihanController extends Controller
         $usage = (int)$u;
         $tar = Tarif::find((int)$l)->tarif;
         $tag = [];
-        if ($usage <= ($tar[0][1] - $tar[0][0]) ) {
-            $tag[0] = $tar[0][2] * ($tar[0][1] - $tar[0][0]);
+        if ($usage <= ((int)$tar[0][1] - (int)$tar[0][0]) ) {
+            $tag[0] = (int)$tar[0][2] * (int)($tar[0][1] - (int)$tar[0][0]);
         } else {
             for ($i = 0; $i < count($tar); $i++) { 
                 if ( $usage > ((int)$tar[$i][1] - (int)$tar[$i][0]) AND $i == 0 ) {
@@ -54,7 +54,7 @@ class TagihanController extends Controller
                     $tag[$i] = (int)$tar[$i][2] * ((int)$tar[$i][1] - (int)$tar[$i][0]);
                     $usage = $usage - ((int)$tar[$i][1] - (int)$tar[$i][0]);
                 } elseif ( $usage >= 10 AND $i == 3 ) {
-                    $tag[$i] = $tar[$i][2] * $usage;
+                    $tag[$i] = (int)$tar[$i][2] * $usage;
                     $usage = $usage - $usage;
                     break;
                 } else {
