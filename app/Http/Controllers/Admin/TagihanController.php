@@ -44,16 +44,16 @@ class TagihanController extends Controller
             $tag[0] = $tar[0][2] * ($tar[0][1] - $tar[0][0]);
         } else {
             for ($i = 0; $i < count($tar); $i++) { 
-                if ( $usage > ($tar[$i][1] - $tar[$i][0]) && $i == 0 ) {
+                if ( $usage > ($tar[$i][1] - $tar[$i][0]) AND $i == 0 ) {
                     $tag[$i] = $tar[$i][2] * ($tar[$i][1] - $tar[$i][0]);
                     $usage = $usage - ($tar[$i][1] - $tar[$i][0]);
-                } elseif ( $usage >= ($tar[$i][1] - $tar[$i][0]) && $i == 1 ) {
+                } elseif ( $usage >= ($tar[$i][1] - $tar[$i][0]) AND $i == 1 ) {
                     $tag[$i] = $tar[$i][2] * ($tar[$i][1] - $tar[$i][0]);
                     $usage = $usage - ($tar[$i][1] - $tar[$i][0]);
-                } elseif ( $usage >= ($tar[$i][1] - $tar[$i][0]) && $i == 2 ) {
+                } elseif ( $usage >= ($tar[$i][1] - $tar[$i][0]) AND $i == 2 ) {
                     $tag[$i] = $tar[$i][2] * ($tar[$i][1] - $tar[$i][0]);
                     $usage = $usage - ($tar[$i][1] - $tar[$i][0]);
-                } elseif ( $usage >= 10 && $i == 3 ) {
+                } elseif ( $usage >= 10 AND $i == 3 ) {
                     $tag[$i] = $tar[$i][2] * $usage;
                     $usage = $usage - $usage;
                     break;
