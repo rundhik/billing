@@ -75,7 +75,7 @@
                                     <div class="widget-summary widget-summary-md">
                                         <div class="widget-summary-col widget-summary-col-icon">
                                             <div class="summary-icon bg-primary">
-                                                <i class="fa fa-tachometer"></i>
+                                                <i class="fa fa-file-text-0"></i>
                                             </div>
                                         </div>
                                         <div class="widget-summary-col">
