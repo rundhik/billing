@@ -26,17 +26,18 @@
                             @if($j==0) 
                                 <label class="col-md-2 control-label">Min</label>
                                 <div class="col-md-2">
-                                    <input type="text" class="form-control" name="tarif[{{$i}}][{{$j}}]" value="{{ $t->tarif[$i][$j] }}" disabled>
+                                    <input type="hidden" class="form-control" name="tarif[{{$i}}][{{$j}}]" value="{{ $t->tarif[$i][$j] }}">
+                                    <input type="number" class="form-control" value="{{ $t->tarif[$i][$j] }}" disabled>
                                 </div>
                                 @elseif($j==1)
                                 <label class="col-md-2 control-label">Max</label>
                                 <div class="col-md-2">
-                                    <input type="text" class="form-control" name="tarif[{{$i}}][{{$j}}]" value="{{ $t->tarif[$i][$j] }}">
+                                    <input type="number" class="form-control" name="tarif[{{$i}}][{{$j}}]" value="{{ $t->tarif[$i][$j] }}">
                                 </div>
                                 @else 
                                 <label class="col-md-2 control-label">Tarif</label>
                                 <div class="col-md-2">
-                                    <input type="text" class="form-control" name="tarif[{{$i}}][{{$j}}]" value="{{ $t->tarif[$i][$j] }}">
+                                    <input type="number" class="form-control" name="tarif[{{$i}}][{{$j}}]" value="{{ $t->tarif[$i][$j] }}">
                                 </div>
                                 @endif
                             @endfor
@@ -47,17 +48,19 @@
                             @if($j==0) 
                                 <label class="col-md-2 control-label">Min</label>
                                 <div class="col-md-2">
-                                    <input type="text" class="form-control" name="tarif[{{$i-1}}][{{$j+1}}]" value="{{ $t->tarif[$i-1][$j+1] }}" disabled>
+                                    <input type="hidden" class="form-control" name="tarif[{{$i}}][{{$j}}]" value="{{ $t->tarif[$i][$j] }}">
+                                    <input type="number" class="form-control" value="{{ $t->tarif[$i][$j] }}" disabled>
+                                    <span class="help-block">Nilai Min akan otomatis mengikuti nilai Max rekursif sebelumnya</span>
                                 </div>
                                 @elseif($j==1)
                                 <label class="col-md-2 control-label">Max</label>
                                 <div class="col-md-2">
-                                    <input type="text" class="form-control" name="tarif[{{$i}}][{{$j}}]" value="{{ $t->tarif[$i][$j] }}">
+                                    <input type="number" class="form-control" name="tarif[{{$i}}][{{$j}}]" value="{{ $t->tarif[$i][$j] }}">
                                 </div>
                                 @else 
                                 <label class="col-md-2 control-label">Tarif</label>
                                 <div class="col-md-2">
-                                    <input type="text" class="form-control" name="tarif[{{$i}}][{{$j}}]" value="{{ $t->tarif[$i][$j] }}">
+                                    <input type="number" class="form-control" name="tarif[{{$i}}][{{$j}}]" value="{{ $t->tarif[$i][$j] }}">
                                 </div>
                                 @endif
                             @endfor
@@ -68,17 +71,20 @@
                             @if($j==0) 
                                 <label class="col-md-2 control-label">Min</label>
                                 <div class="col-md-2">
-                                    <input type="text" class="form-control" name="tarif[{{$i-1}}][{{$j+1}}]" value="{{ $t->tarif[$i-1][$j+1] }}" disabled>
+                                    <input type="hidden" class="form-control" name="tarif[{{$i}}][{{$j}}]" value="{{ $t->tarif[$i][$j] }}">
+                                    <input type="number" class="form-control" value="{{ $t->tarif[$i][$j] }}" disabled>
+                                    <span class="help-block">Nilai Min akan otomatis mengikuti nilai Max rekursif sebelumnya</span>
                                 </div>
                                 @elseif($j==1)
                                 <label class="col-md-2 control-label">Max</label>
                                 <div class="col-md-2">
-                                    <input type="text" class="form-control" name="tarif[{{$i}}][{{$j}}]" value="{{ $t->tarif[$i][$j] }}" disabled>
+                                    <input type="hidden" class="form-control" name="tarif[{{$i}}][{{$j}}]" value="{{ $t->tarif[$i][$j] }}">
+                                    <input type="number" class="form-control" value="{{ $t->tarif[$i][$j] }}" disabled>
                                 </div>
                                 @else 
                                 <label class="col-md-2 control-label">Tarif</label>
                                 <div class="col-md-2">
-                                    <input type="text" class="form-control" name="tarif[{{$i}}][{{$j}}]" value="{{ $t->tarif[$i][$j] }}">
+                                    <input type="number" class="form-control" name="tarif[{{$i}}][{{$j}}]" value="{{ $t->tarif[$i][$j] }}">
                                 </div>
                                 @endif
                             @endfor

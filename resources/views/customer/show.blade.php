@@ -3,7 +3,14 @@
 
 @section('konten')
         
-            <!-- start: page -->        
+            <!-- start: page -->      
+        <section class="panel">
+                <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <strong>Perhatian !</strong> Menghapus Data Customer akan menyebabkan list Tagihan gagal dimuat.
+                </div>
+        </section>
+
         <section class="panel">
             <form class="form-horizontal form-bordered" method="POST" action="{{ route('cust.destroy', $c->id) }}">
             <header class="panel-heading">
@@ -42,7 +49,6 @@
                 </form>
             </div>
         </section>
-
             <!-- end: page -->
 @endsection
 

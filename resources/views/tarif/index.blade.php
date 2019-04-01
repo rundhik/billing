@@ -3,7 +3,17 @@
 
 @section('konten')
         
-            <!-- start: page -->        
+            <!-- start: page -->     
+        @if (session('success'))
+        <section class="panel">
+                <div class="alert alert-success">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        {{ session('success') }}
+                </div>
+        </section>
+        @endif
+            
+
         <section class="panel">
                 <header class="panel-heading">
                     <div class="panel-actions">

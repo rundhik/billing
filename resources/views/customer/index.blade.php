@@ -3,7 +3,16 @@
 
 @section('konten')
         
-            <!-- start: page -->        
+            <!-- start: page -->      
+        @if (session('success'))
+        <section class="panel">
+                <div class="alert alert-success">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        {{ session('success') }}
+                </div>
+        </section>
+        @endif
+        
         <section class="panel">
             <header class="panel-heading">
                     <h2 class="panel-title">Daftar Pelanggan</h2>
@@ -32,8 +41,9 @@
                                 <td>{{$customer->alamat}}</td>
                                 <td>{{$customer->telp}}</td>
                                 <td>
-                                    <a href="{{ route('cust.edit', $customer->id)}}"><i class="fa fa-pencil"></i></a>
-                                    <a href="{{ route('cust.show', $customer->id)}}"><i class="fa fa-trash-o"></i></a>
+                                    <a href="{{ route('cust.edit', $customer->id)}}"><i class="fa fa-pencil"></i> Edit </a>
+                                    <span>&nbsp;</span>
+                                    <a href="{{ route('cust.show', $customer->id)}}"><i class="fa fa-trash-o"></i> Hapus </a>
                                 </td>
                             </tr>
                             @endforeach

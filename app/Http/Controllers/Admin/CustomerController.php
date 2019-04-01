@@ -42,7 +42,7 @@ class CustomerController extends Controller
         $c->alamat = $request->alamat;
         $c->telp = $request->telp;
         $c->save();
-        return view('customer.index');
+        return view('customer.index')->with('success', 'Data Customer berhasil ditambahkan.');
     }
 
     /**
@@ -79,7 +79,7 @@ class CustomerController extends Controller
     public function update(Request $request, $id)
     {
         $c = Customer::find($id)->update($request->all());
-        return redirect()->route('cust.index');
+        return redirect()->route('cust.index')->with('success', 'Data Customer berhasil diubah.');
     }
 
     /**

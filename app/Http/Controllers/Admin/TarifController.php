@@ -82,7 +82,16 @@ class TarifController extends Controller
     public function update(Request $request, $id)
     {
         $t = Tarif::find($id);
-        $t->update($request->all());
+        $x = [];
+        $x = $request->tarif;
+        for ($i=0; $i < count($request->tarif); $i++) { 
+            for ($j=0; $j < count($request->tarif[$i]); $j++) { 
+                if ($i < (count($request->tarif)) && $i > 0 && $j == 0) {
+                    $x[$i][$j] = $request->tarif[$i-1][$j+1];
+                }
+            }
+        }
+        $t->update(['tarif' => $x]);
         return redirect()->route('fare.index')->with('success', 'Tarif berhasil diupdate');
     }
 
